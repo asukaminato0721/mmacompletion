@@ -1,0 +1,39 @@
+{
+  "name": "mmacompletion",
+  "displayName": "mmacompletion",
+  "description": "completion more functions for mathematica",
+  "version": "0.0.1",
+  "repository": {
+    "url": "whatever"
+  },
+  "activationEvents": [
+    "onLanguage:wolfram"
+  ],
+  "engines": {
+    "vscode": "^1.75.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Keymaps"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "mmacompletion"
+    },
+    "languages": [
+      {
+        "id": "wolfram",
+        "aliases": [
+          "Wolfram Language"
+        ],
+        "extensions": [
+          ".wls",
+          ".wlnb",
+          ".wl",
+          ".nb"
+        ]
+      }
+    ]
+  }
+}
