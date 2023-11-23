@@ -6,6 +6,12 @@ const fs = require("fs");
 
 const allFunctionNames = Object.assign(
   {},
+  Object.fromEntries(
+    fs
+      .readFileSync(path.join(__dirname, "symbols", "names.txt"), "utf8")
+      .split(" ")
+      .map((x) => [x, "None"])
+  ),
   ...fs
     .readdirSync(path.join(__dirname, "symbols"))
     .filter((x) => x.startsWith("symbols") && x.endsWith(".json"))

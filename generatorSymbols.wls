@@ -51,6 +51,10 @@ arr =
         ]
     ];
 
+arr //
+StringRiffle //
+Export["symbols/names.txt", #]&
+
 (* arr // #[[;;500]]&//
 AssociationMap[getMapFromName] //
 Export["symbols-500.json", #]&;
