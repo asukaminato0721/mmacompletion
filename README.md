@@ -14,6 +14,8 @@ Get all inner functions. Make sure you have `wolframscript` in your `PATH`.
 wolframscript -f ./generatorSymbols.wls
 ```
 
+There may throw a lot of errors, so be patient.
+
 then
 
 <kbd>F5</kbd>
@@ -28,13 +30,6 @@ No `node_modules`
 
 ---
 
-## TODO
+## Warning:
 
-use
-
-```mma
-nake = (Unprotect[#];ClearAttributes[#, ReadProtected];#)&
-PaneSelectorBox // nake // Information
-```
-
-to get some documents.
+Undocumented functions may change from version to version, so better generate the version you use.
