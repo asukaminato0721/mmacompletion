@@ -4,9 +4,16 @@ const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
 
-const allFunctionNames = fs.readFileSync(
-  path.join(__dirname, "symbols.txt"),
-  "utf8"
+const allFunctionNames = Object.assign(
+  {},
+  ...fs
+    .readdirSync(path.join(__dirname, "symbols"))
+    .filter((x) => x.startsWith("symbols") && x.endsWith(".json"))
+    .map((name) =>
+      JSON.parse(
+        fs.readFileSync(path.join(__dirname, "symbols", name), "utf8") || "{}"
+      )
+    )
 );
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
@@ -18,12 +25,13 @@ function activate(context) {
     vscode.languages.registerCompletionItemProvider("wolfram", {
       provideCompletionItems(document, position, token, context) {
         // return all completion items as array
-        return allFunctionNames.split("\n").map((x) => {
+        return Object.entries(allFunctionNames).map(([name, desc]) => {
           let c = new vscode.CompletionItem(
-            x,
+            name,
             vscode.CompletionItemKind.Function
           );
-          c.insertText = x;
+          c.insertText = name;
+          c.documentation = desc;
           return c;
         });
       },

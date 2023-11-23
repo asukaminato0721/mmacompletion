@@ -2,7 +2,7 @@
   "name": "mmacompletion",
   "displayName": "mmacompletion",
   "description": "completion more functions for mathematica",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "repository": {
     "url": "whatever"
   },
