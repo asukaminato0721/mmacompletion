@@ -41,9 +41,12 @@ getMapFromName[x_String](* String *) :=
         ]
     ]
 
+skipFunctions = WolframLanguageData["EntityCanonicalNames"] // AssociationMap[
+    True&]
+
 arr =
     Names["*`*"] //
-    Select[StringContainsQ["`"]] //
+    Select[!KeyExistsQ[skipFunctions, #]&] //
     Select[
         Function[s,
             StringSplit[s, "`"] // AllTrue[StringStartsQ["$"... ~~ _?
