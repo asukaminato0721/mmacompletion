@@ -44,9 +44,17 @@ getMapFromName[x_String](* String *) :=
 skipFunctions = WolframLanguageData["EntityCanonicalNames"] // AssociationMap[
     True&]
 
+hiddenSystemFunctions =
+    Names["*"] //
+    Select[PrintableASCIIQ] //
+    Select[StringStartsQ[_?UpperCaseQ]] //
+    Select[!KeyExistsQ[skipFunctions, #]&] //
+    AssociationMap[getMapFromName] //
+    Export["symbols/symbols-hidden.json", #]&
+
 arr =
     Names["*`*"] //
-    Select[!KeyExistsQ[skipFunctions, #]&] //
+    Select[StringContainsQ["`"]] //
     Select[
         Function[s,
             StringSplit[s, "`"] // AllTrue[StringStartsQ["$"... ~~ _?
@@ -64,7 +72,7 @@ Export["symbols-500.json", #]&;
 arr // #[[501;;1000]]&//
 AssociationMap[getMapFromName] //
 Export["symbols.json", #]& *)
-
+r
 Function[num,
         arr //
         #[[num ;; num + 500]]& //
