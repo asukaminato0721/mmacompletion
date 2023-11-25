@@ -24,8 +24,21 @@ getMapFromName[x_String](* String *) :=
             If[a1 === $Failed,
                 Return["None"]
             ];
-            a1 = Check[a1 // KeyValueMap[ToString[#1] <> ": " <> ToString[
-                #2]&], $Failed];
+            a1 =
+                Check[
+                    a1 //
+                        KeyValueMap[
+                            If[#1 == "Options",
+                                ToString[#1, FormatType -> InputForm]
+                                     <> ": " <> ToString[#2, FormatType -> InputForm]
+                                ,
+                                ToString[#1, FormatType -> InputForm]
+                                     <> ": " <> ToString[#2]
+                            ]&
+                        ]
+                    ,
+                    $Failed
+                ];
             If[a1 === $Failed,
                 Return["None"]
             ];
