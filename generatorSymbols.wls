@@ -29,11 +29,9 @@ getMapFromName[x_String](* String *) :=
                     a1 //
                         KeyValueMap[
                             If[#1 == "Options",
-                                ToString[#1, FormatType -> InputForm]
-                                     <> ": " <> ToString[#2, FormatType -> InputForm]
+                                ToString[#1, FormatType -> InputForm] <> ": " <> ToString[#2, FormatType -> InputForm]
                                 ,
-                                ToString[#1, FormatType -> InputForm]
-                                     <> ": " <> ToString[#2]
+                                ToString[#1, FormatType -> InputForm] <> ": " <> ToString[#2]
                             ]&
                         ]
                     ,
@@ -65,8 +63,7 @@ arr =
     Select[StringContainsQ["`"]] //
     Select[
         Function[s,
-            StringSplit[s, "`"] // AllTrue[StringStartsQ["$"... ~~ _?
-                UpperCaseQ]]
+            StringSplit[s, "`"] // AllTrue[StringStartsQ["$"... ~~ _?UpperCaseQ]]
         ]
     ];
 

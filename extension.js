@@ -55,8 +55,8 @@ function activate(context) {
             "```mma\n" +
               (allFunctionNames[
                 document.getText(
-                  // this regex do a loose match, only check the first is UPPER and ignore others.
-                  document.getWordRangeAtPosition(position, /[A-Z][`\$A-z]*/)
+                  // this regex do a loose match, only check the first is UPPER or $ and ignore others.
+                  document.getWordRangeAtPosition(position, /[A-Z\$][`\$A-Za-z0-9]*/)
                 )
               ] || "") +
               "\n```"
