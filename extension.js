@@ -31,7 +31,7 @@ const allFunctionNames = Object.assign(
 function activate(context) {
   context.subscriptions.push(
     vscode.languages.registerCompletionItemProvider(
-      { scheme: "file", language: "wolfram" },
+      { language: "wolfram" },
       {
         provideCompletionItems(document, position, token, context) {
           // return all completion items as array
@@ -48,7 +48,7 @@ function activate(context) {
       }
     ),
     vscode.languages.registerHoverProvider(
-      { scheme: "file", language: "wolfram" },
+      { language: "wolfram" },
       {
         provideHover(document, position, token) {
           return new vscode.Hover(
@@ -56,7 +56,10 @@ function activate(context) {
               (allFunctionNames[
                 document.getText(
                   // this regex do a loose match, only check the first is UPPER or $ and ignore others.
-                  document.getWordRangeAtPosition(position, /[A-Z\$][`\$A-Za-z0-9]*/)
+                  document.getWordRangeAtPosition(
+                    position,
+                    /[A-Z\$][`\$A-Za-z0-9]*/
+                  )
                 )
               ] || "") +
               "\n```"
