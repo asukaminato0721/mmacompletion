@@ -2,7 +2,7 @@
   "name": "mmacompletion",
   "displayName": "mmacompletion",
   "description": "completion more functions for mathematica",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": {
     "url": "whatever"
   },
@@ -31,7 +31,9 @@
           ".wls",
           ".wlnb",
           ".wl",
-          ".nb"
+          ".nb",
+          ".ipynb",
+          ".m"
         ]
       }
     ]
